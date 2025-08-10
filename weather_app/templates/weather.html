@@ -1,52 +1,41 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1/>
-    <title>Weather App</title>
-    <!-- Bootstrap CSS -->
-    <link  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  integrity="sha384-MegaL5VgfYLaGIRREHzZluNPRzp83PRfPpB1zLGZlV3CBrwC3a7GrJeN5RFeW9tE"
-  crossorigin="anonymous"/>
-  </head>
 <body>
-<div class="container py-5">
- <h1 class="mb-4 text-center">Weather App</h1>
+  <div class="container py-5 d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+    <h1 class="mb-4 text-center">Weather App</h1>
 
- <form method="post" class="row g-3 justify-content-center">
-  {% csrf_token %}
-  <div class="col-auto">
-   <input type="text"
+    <form method="post" class="row g-3 justify-content-center w-100">
+      {% csrf_token %}
+      <div class="col-auto">
+        <input
+          type="text"
           name="city"
           class="form-control"
           placeholder="Enter city name"
           value="{{ city|default:'' }}"
-          required/>
-          </div>
-    <div class="col-auto">
+          required
+        />
+      </div>
+      <div class="col-auto">
         <button type="submit" class="btn btn-primary mb-3">Get Weather</button>
-        </div>
-        </form>
+      </div>
+    </form>
 
     {% if error %}
-     <div class="alert alert-danger" text-center" role="alert">
-       {{ error }}
-     </div>
+      <div class="alert alert-danger text-center" role="alert" style="width: 100%;">
+        {{ error }}
+      </div>
     {% endif %}
 
     {% if weather_data %}
-     <div class="card mx-auto" style=""max-width: 400px;">
-      <div class="card-body text-center">
-       <h3 class="card-title">{{ city }}</h3>
-       <p class="card-text">
-       <strong>Temperature:</strong> {{ weather_data.main.temp }} °C<br>
-       <strong>Humidity:</strong> {{ weather_data.main.humidity }} %<br/>
-       <strong>Description:</strong> {{ weather_data.weather.0.description|title }}
-       </p>
-       </div>
-       </div>
-       {% endif %}
-       </div>
-       </body>
-       </html>
+      <div class="card mx-auto" style="max-width: 400px; width: 100%;">
+        <div class="card-body text-center">
+          <h3 class="card-title">{{ city }}</h3>
+          <p class="card-text">
+            <strong>Temperature:</strong> {{ weather_data.main.temp }} °C<br />
+            <strong>Humidity:</strong> {{ weather_data.main.humidity }} %<br />
+            <strong>Description:</strong> {{ weather_data.weather.0.description|title }}
+          </p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</body>
