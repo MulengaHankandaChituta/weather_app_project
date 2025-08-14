@@ -1,8 +1,9 @@
 # Ignore virtual environment folder
 wa_env/
 
-# Ignore database file
+# Ignore database files
 db.sqlite3
+*.db
 
 # Ignore environment variables file containing API keys
 .env
@@ -11,3 +12,10 @@ db.sqlite3
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Build and distribution directories
+build/
+dist/
+
+# PyInstaller spec files
+*.spec

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv
 
 load_dotenv() # Load environment variables from .env file
@@ -19,7 +20,16 @@ load_dotenv() # Load environment variables from .env file
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# FOR PYINSTALLER EXECUTABLE SUPPORT - ADD THIS:
+if getattr(sys, 'frozen', False):
+    # Running as executable
+    BASE_DIR = Path(sys.executable).parent
+else:
+    # Running normally
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -83,7 +93,7 @@ WSGI_APPLICATION = 'weather_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR / 'weather_app.db'),
     }
 }
 
