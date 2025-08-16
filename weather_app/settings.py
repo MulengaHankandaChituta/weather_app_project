@@ -5,12 +5,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fl@icl1ro1aq6$@j61@i$zh#mv66=nprpz)1h7mvdacrqz$sq)xe'  # CHANGE THIS
+SECRET_KEY = 'django-insecure-fl@icl1ro1aq6$@j61@i$zh#mv66=nprpz)1h7mvdacrqz$sq)xe'  # Replace in production!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['mulengachituta.pythonanywhere.com']  # CHANGE TO YOUR DOMAIN
+ALLOWED_HOSTS = ['mulengachituta.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'weather_app',  # my app
+    'weather_app',
 ]
 
 MIDDLEWARE = [
@@ -33,12 +33,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'weather_app_project.urls'  
+ROOT_URLCONF = 'weather_app.urls'  # ✅ Corrected
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # if you have custom templates
+        'DIRS': [BASE_DIR / 'templates'],  # ✅ Fixed path syntax
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -51,7 +51,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'weather_app_project.wsgi.application'  
+WSGI_APPLICATION = 'weather_app.wsgi.application'  # ✅ Correct for your project layout
+
 # Database
 DATABASES = {
     'default': {
@@ -74,14 +75,14 @@ TIME_ZONE = 'Africa/Lusaka'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # ✅ For collectstatic
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Media files (optional)
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
