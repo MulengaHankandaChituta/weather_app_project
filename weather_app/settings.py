@@ -1,14 +1,22 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load .env file
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+# Get API key from environment
+OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-fl@icl1ro1aq6$@j61@i$zh#mv66=nprpz)1h7mvdacrqz$sq)xe'  # Replace in production!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
