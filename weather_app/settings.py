@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+print("API Key:", os.getenv("OPENWEATHER_API_KEY"))
+
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
