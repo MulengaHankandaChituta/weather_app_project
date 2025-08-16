@@ -1,0 +1,15 @@
+altgraph==0.17.4
+asgiref==3.9.1
+certifi==2025.8.3
+charset-normalizer==3.4.3
+Django==5.2.5
+idna==3.10
+packaging==25.0
+pyinstaller==6.15.0
+pyinstaller-hooks-contrib==2025.8
+python-dotenv==1.1.1
+requests==2.32.4
+setuptools==80.9.0
+sqlparse==0.5.3
+urllib3==2.5.0
+gunicorn==21.2.0
