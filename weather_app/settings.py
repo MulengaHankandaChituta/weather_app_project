@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-fl@icl1ro1aq6$@j61@i$zh#mv66=nprpz)1h7mvdacrqz$sq)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['mulengachituta.pythonanywhere.com']
+ALLOWED_HOSTS = ['mulengachituta.pythoneverywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -77,10 +77,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # ✅ For collectstatic
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Media files
 MEDIA_URL = '/media/'
