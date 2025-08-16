@@ -1,33 +1,36 @@
-from django.shortcuts import render
-from django.conf import settings
-from .weather_utils import get_weather_data
 
-def weather_view(request):
+import requests
+
+def get_weather_data(api_key, city):
     """
-    View to render the weather data for a specified city.
-    
-    parameters:
-    request: The HTTP request object.
-    
+    Fetch weather data from OpenWeatherMap API for a given city.
+
+    Parameters:
+    - api_key (str): Your OpenWeatherMap API key.
+    - city (str): Name of the city.
+
     Returns:
-    HttpResponse: Rendered HTML page with weather data or an error message.
+    - dict: Weather data JSON if successful.
+    - None: If there was an error fetching data.
     """
-    weather_data = None
-    city = None
-    error = None
+    url = f"https://api.openweathermap.org/data/2.5/weather"
+    params = {
+        "q": city,
+        "appid": api_key,
+        "units": "metric"  # Celsius
+    }
 
-    if request.method == "POST":
-        city = request.POST.get("city")
-        if city:
-            api_key = settings.OPENWEATHER_API_KEY
-            weather_data = get_weather_data(api_key, city)
-            if weather_data is None:
-                error = "Could not fetch weather data. Try again later."
-        else:
-            error = "Please enter a city or town name."
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()  # Raise HTTPError for bad responses (4xx, 5xx)
+        return response.json()
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error: {http_err}")  # Optional logging
+    except requests.exceptions.ConnectionError as conn_err:
+        print(f"Connection error: {conn_err}")
+    except requests.exceptions.Timeout as timeout_err:
+        print(f"Timeout error: {timeout_err}")
+    except requests.exceptions.RequestException as req_err:
+        print(f"Request exception: {req_err}")
 
-    return render(request, "weather.html", {
-        "weather_data": weather_data,
-        "city": city,
-        "error": error,
-    })
+    return None
