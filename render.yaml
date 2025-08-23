@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: weather-app
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requuirements.txt
+      python3 manage.py collectstatic --noinput
+    startCommand: gunicorn weather_app.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: weather_app.settings
+      - key: OPENWEATHER_API_KEY
+        sync: false
