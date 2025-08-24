@@ -18,6 +18,8 @@ def get_weather_data(api_key, city):
         response = requests.get(base_url, params=params, timeout=10)
         response.raise_for_status()  # Raise error for HTTP errors
         return response.json()
+        print("Weather API response:", data)
+        return data
     except requests.exceptions.RequestException as e:
         print(f"Error fetching weather for {city}: {e}")  # Log errors
         return None
