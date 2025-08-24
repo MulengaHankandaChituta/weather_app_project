@@ -12,7 +12,7 @@ def weather_view(request):
 
     # Get API key from environment variables
     api_key = os.getenv("OPENWEATHER_API_KEY")
-    print("🔑 API KEY FROM ENV:", api_key)  # Debug line
+   # print("🔑 API KEY FROM ENV:", api_key)  # Debug line
     if not api_key:
         error = "API key not set. Please check your environment variables."
 
